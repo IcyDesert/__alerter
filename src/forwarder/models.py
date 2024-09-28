@@ -1,18 +1,16 @@
 from typing import Dict, Any, Literal, List, Optional
-from pydantic import BaseModel, HttpUrl
-from datetime import datetime
-
+from pydantic import BaseModel
 
 class Alert(BaseModel):
     """告警信息"""
     status: Literal["firing", "resolved"]
     labels: Dict[str, str]
     annotations: Dict[str, str]
-    startsAt: datetime
-    endsAt: datetime
-    generatorURL: HttpUrl
+    startsAt: str
+    endsAt: str
+    generatorURL: str
     fingerprint: str
-    silenceURL: HttpUrl
+    silenceURL: str
     values: Dict[str, Any]
     """Will be deprecated soon"""
     # dashboardURL: Optional[HttpUrl]
@@ -30,7 +28,7 @@ class WebhookNotification(BaseModel):
     groupLabels: Optional[dict]
     commonLabels: Dict[str, str]  # 多个告警中的共同标签
     commonAnnotations: Optional[dict]  # 多个告警中的共同注解
-    externalURL: HttpUrl
+    externalURL: str
     version: str
     groupKey: Optional[str]
     truncatedAlerts: int
